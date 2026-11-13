@@ -1,0 +1,193 @@
+.env.example
+  s_54214098f207e0::t_8784ea63c2b635 1-24
+.gitattributes
+  s_54214098f207e0::t_831bc0db4108ff 1-3
+.github/workflows/ci.yml
+  s_54214098f207e0::t_82816f05a3daa7 1-129
+.gitignore
+  s_54214098f207e0::t_b3bb09d3146de5 1-18
+LICENSE
+  s_54214098f207e0::t_4082ae0178d5c6 1-21
+README.md
+  s_54214098f207e0::t_e9e60ef2cf1ef6 1-179
+backend/Dockerfile
+  s_54214098f207e0::t_8b3b36120bebdd 1-16
+backend/pom.xml
+  s_54214098f207e0::t_eb30c6e5b872ce 1-134
+backend/src/main/java/io/github/giuliacastro/opsportal/OpsPortalApplication.java
+  s_54214098f207e0::t_620ed834897e2f 1-14
+backend/src/main/java/io/github/giuliacastro/opsportal/application/GetDashboardUseCase.java
+  s_54214098f207e0::t_a918929930129b 1-56
+backend/src/main/java/io/github/giuliacastro/opsportal/application/ListReportRunsUseCase.java
+  s_54214098f207e0::t_ad4ba20a44bd07 1-18
+backend/src/main/java/io/github/giuliacastro/opsportal/application/Ports.java
+  s_54214098f207e0::t_adfd35942c3180 1-47
+backend/src/main/java/io/github/giuliacastro/opsportal/application/RunReportUseCase.java
+  s_54214098f207e0::t_ef1eb808ff6380 1-87
+backend/src/main/java/io/github/giuliacastro/opsportal/application/SourceUnavailableException.java
+  s_54214098f207e0::t_7b65987b75b10b 1-16
+backend/src/main/java/io/github/giuliacastro/opsportal/config/AppConfig.java
+  s_54214098f207e0::t_1dffc99a7f0f96 1-107
+backend/src/main/java/io/github/giuliacastro/opsportal/config/PortalProperties.java
+  s_54214098f207e0::t_d7f726dc57aaa7 1-39
+backend/src/main/java/io/github/giuliacastro/opsportal/config/SecurityConfig.java
+  s_54214098f207e0::t_2b379f1d3b54b7 1-104
+backend/src/main/java/io/github/giuliacastro/opsportal/domain/DailyReportSummary.java
+  s_54214098f207e0::t_357de5535ab1d2 1-20
+backend/src/main/java/io/github/giuliacastro/opsportal/domain/Dashboard.java
+  s_54214098f207e0::t_6a88da66fd3073 1-75
+backend/src/main/java/io/github/giuliacastro/opsportal/domain/DomainError.java
+  s_54214098f207e0::t_47c8f2e65103bb 1-14
+backend/src/main/java/io/github/giuliacastro/opsportal/domain/ErrorCode.java
+  s_54214098f207e0::t_f7fb6fcb6c5555 1-8
+backend/src/main/java/io/github/giuliacastro/opsportal/domain/HealthStatus.java
+  s_54214098f207e0::t_b125fe4642c40b 1-7
+backend/src/main/java/io/github/giuliacastro/opsportal/domain/ReportKpis.java
+  s_54214098f207e0::t_2c91ec61cbe9ac 1-15
+backend/src/main/java/io/github/giuliacastro/opsportal/domain/ReportRun.java
+  s_54214098f207e0::t_a7aad0a0cc1cf5 1-90
+backend/src/main/java/io/github/giuliacastro/opsportal/domain/ReportRunPolicy.java
+  s_54214098f207e0::t_296784f4e25185 1-27
+backend/src/main/java/io/github/giuliacastro/opsportal/domain/Result.java
+  s_54214098f207e0::t_636ad50637f80c 1-17
+backend/src/main/java/io/github/giuliacastro/opsportal/domain/RunOutcome.java
+  s_54214098f207e0::t_2139077d76dc85 1-10
+backend/src/main/java/io/github/giuliacastro/opsportal/domain/SourceResult.java
+  s_54214098f207e0::t_ed05734698c239 1-13
+backend/src/main/java/io/github/giuliacastro/opsportal/domain/TriageKpis.java
+  s_54214098f207e0::t_26143d9dc5b679 1-25
+backend/src/main/java/io/github/giuliacastro/opsportal/infrastructure/http/CircuitBreaker.java
+  s_54214098f207e0::t_93b603048bb992 1-44
+backend/src/main/java/io/github/giuliacastro/opsportal/infrastructure/http/N8nReportTrigger.java
+  s_54214098f207e0::t_4daf08825e3c46 1-66
+backend/src/main/java/io/github/giuliacastro/opsportal/infrastructure/http/ReportHttpGateway.java
+  s_54214098f207e0::t_d1be76c1500306 1-92
+backend/src/main/java/io/github/giuliacastro/opsportal/infrastructure/http/TriageHttpGateway.java
+  s_54214098f207e0::t_6733d933568cdb 1-44
+backend/src/main/java/io/github/giuliacastro/opsportal/infrastructure/http/UpstreamClient.java
+  s_54214098f207e0::t_d30c2d42f74c2f 1-70
+backend/src/main/java/io/github/giuliacastro/opsportal/infrastructure/persistence/JpaReportRunRepository.java
+  s_54214098f207e0::t_1309977de133fc 1-33
+backend/src/main/java/io/github/giuliacastro/opsportal/infrastructure/persistence/ReportRunEntity.java
+  s_54214098f207e0::t_a736a09ab6c203 1-89
+backend/src/main/java/io/github/giuliacastro/opsportal/infrastructure/persistence/SpringDataReportRuns.java
+  s_54214098f207e0::t_e8b1c091bf5ce4 1-5
+backend/src/main/java/io/github/giuliacastro/opsportal/web/ApiExceptionHandler.java
+  s_54214098f207e0::t_7f2710b42959f9 1-66
+backend/src/main/java/io/github/giuliacastro/opsportal/web/AuthController.java
+  s_54214098f207e0::t_809acd7b53a137 1-89
+backend/src/main/java/io/github/giuliacastro/opsportal/web/CorrelationIdFilter.java
+  s_54214098f207e0::t_c30a7bdd578f02 1-41
+backend/src/main/java/io/github/giuliacastro/opsportal/web/PortalController.java
+  s_54214098f207e0::t_f85646b974de4c 1-86
+backend/src/main/java/io/github/giuliacastro/opsportal/web/ProblemFactory.java
+  s_54214098f207e0::t_871f3c14c44d9a 1-61
+backend/src/main/resources/application.yml
+  s_54214098f207e0::t_810d690c07c3ad 1-73
+backend/src/main/resources/db/migration/V1__create_report_run.sql
+  s_54214098f207e0::t_0fc3f3b2181c06 1-20
+backend/src/main/resources/messages.properties
+  s_54214098f207e0::t_18b5ff7e09b817 1-18
+backend/src/main/resources/messages_pt_BR.properties
+  s_54214098f207e0::t_ae3bf2a430c262 1-18
+backend/src/test/java/io/github/giuliacastro/opsportal/application/UseCaseTest.java
+  s_54214098f207e0::t_43717f116324ff 1-193
+backend/src/test/java/io/github/giuliacastro/opsportal/domain/DomainTest.java
+  s_54214098f207e0::t_5e56d894ea703d 1-157
+backend/src/test/java/io/github/giuliacastro/opsportal/infrastructure/CircuitBreakerTest.java
+  s_54214098f207e0::t_643c904b5b71c3 1-49
+backend/src/test/java/io/github/giuliacastro/opsportal/web/LoginFlowTest.java
+  s_54214098f207e0::t_e3614478527284 1-68
+backend/src/test/java/io/github/giuliacastro/opsportal/web/PortalApiTest.java
+  s_54214098f207e0::t_e45677ff768fae 1-197
+backend/src/test/java/io/github/giuliacastro/opsportal/web/StubUpstreams.java
+  s_54214098f207e0::t_e6086a078be188 1-100
+backend/src/test/resources/application-test.yml
+  s_54214098f207e0::t_dece06e1b9b51a 1-21
+docker-compose.yml
+  s_54214098f207e0::t_c76eed800eb9cc 1-80
+frontend/.env.demo
+  s_54214098f207e0::t_16d9e801db91ef 1-3
+frontend/Dockerfile
+  s_54214098f207e0::t_4a222ea0dbb361 1-11
+frontend/index.html
+  s_54214098f207e0::t_733c97ca7c2a73 1-13
+frontend/nginx.conf
+  s_54214098f207e0::t_a3ebfb68e309c2 1-25
+frontend/package-lock.json
+  s_54214098f207e0::t_0760afa62da96d 1-2652
+frontend/package.json
+  s_54214098f207e0::t_8907e6cbc3df7c 1-28
+frontend/public/demo/dashboard.json
+  s_54214098f207e0::t_5a8653719cc4b8 1
+frontend/public/demo/report-runs.json
+  s_54214098f207e0::t_690d0d64311a56 1
+frontend/src/App.vue
+  s_54214098f207e0::t_b409cdd92443a6 1-53
+frontend/src/api/client.test.ts
+  s_54214098f207e0::t_667dfcf775adb3 1-53
+frontend/src/api/client.ts
+  s_54214098f207e0::t_a6631bb3a7d08f 1-93
+frontend/src/api/types.ts
+  s_54214098f207e0::t_432d0de6ea72a3 1-85
+frontend/src/components/HealthTimeline.test.ts
+  s_54214098f207e0::t_918392e6c35c6f 1-48
+frontend/src/components/HealthTimeline.vue
+  s_54214098f207e0::t_a62af4d9531a3e 1-40
+frontend/src/components/KpiCard.vue
+  s_54214098f207e0::t_81a7c76aa437f9 1-11
+frontend/src/env.d.ts
+  s_54214098f207e0::t_9349e41bb0ab28 1-12
+frontend/src/format.ts
+  s_54214098f207e0::t_b16f3e6fedcd3f 1-36
+frontend/src/i18n.ts
+  s_54214098f207e0::t_8ea304b7ea250b 1-33
+frontend/src/locales/en.json
+  s_54214098f207e0::t_05ebe75b017b04 1-78
+frontend/src/locales/pt-BR.json
+  s_54214098f207e0::t_f304135f4311e7 1-78
+frontend/src/main.ts
+  s_54214098f207e0::t_3adc8cfac4d8fd 1-8
+frontend/src/router.ts
+  s_54214098f207e0::t_6bee5f86d10806 1-21
+frontend/src/session.ts
+  s_54214098f207e0::t_c69a978ba4c797 1-20
+frontend/src/style.css
+  s_54214098f207e0::t_485d1b2aa96b21 1-123
+frontend/src/views/DashboardView.vue
+  s_54214098f207e0::t_ba1912047a30bc 1-109
+frontend/src/views/LoginView.vue
+  s_54214098f207e0::t_1b9e533eac2d94 1-54
+frontend/src/views/ReportsView.vue
+  s_54214098f207e0::t_2ff851df48720b 1-129
+frontend/tsconfig.json
+  s_54214098f207e0::t_48e2ab1909845e 1-18
+frontend/vite.config.ts
+  s_54214098f207e0::t_b130195ae3f0f8 1-19
+scripts/e2e.sh
+  s_54214098f207e0::t_6093ddff7c0603 1-65
+scripts/export-demo.sh
+  s_54214098f207e0::t_ebe38c046b6b11 1-13
+scripts/generate-env.sh
+  s_54214098f207e0::t_eebc594b357c2f 1-25
+scripts/portal-api.sh
+  s_54214098f207e0::t_38742c5eff4934 1-42
+scripts/seed.sh
+  s_54214098f207e0::t_f45c77f767b370 1-54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a47b501302854a434be50ed181e8648211327662",
+  "prompts": {},
+  "sessions": {
+    "s_54214098f207e0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "94211bd0-6b9d-4bb9-b402-a4345a77b8fc",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Giulia Castro <castro.giuliab@gmail.com>"
+    }
+  }
+}
