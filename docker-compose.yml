@@ -1,0 +1,80 @@
+# Full stack of the three projects. Clone them side by side:
+#   projetos/ticket-triage-agent  projetos/ops-report-automation  projetos/ops-portal
+name: ops-portal
+
+include:
+  # Project 2 as is: report engine, PostgreSQL, n8n (with its bootstrap) and Mailpit.
+  - path: ../ops-report-automation/docker-compose.yml
+    env_file: .env
+
+services:
+  # Project 1: ticket triage agent (keyword baseline by default: no API cost).
+  triage-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: triage
+      POSTGRES_USER: triage
+      POSTGRES_PASSWORD: ${TRIAGE_DB_PASSWORD:?set TRIAGE_DB_PASSWORD in .env}
+    volumes:
+      - triage-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U triage -d triage"]
+      interval: 5s
+      retries: 10
+
+  triage-api:
+    build: ../ticket-triage-agent
+    environment:
+      DATABASE_URL: postgresql+psycopg://triage:${TRIAGE_DB_PASSWORD}@triage-db:5432/triage
+      API_KEYS: ops:${TRIAGE_API_KEY:?set TRIAGE_API_KEY in .env}
+      TRIAGE_AGENT: ${TRIAGE_AGENT:-keyword}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    ports:
+      - "127.0.0.1:8001:8000"
+    depends_on:
+      triage-db:
+        condition: service_healthy
+
+  # Project 3: portal (BFF + SPA).
+  portal-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: portal
+      POSTGRES_USER: portal
+      POSTGRES_PASSWORD: ${PORTAL_DB_PASSWORD:?set PORTAL_DB_PASSWORD in .env}
+    volumes:
+      - portal-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U portal -d portal"]
+      interval: 5s
+      retries: 10
+
+  portal-api:
+    build: ./backend
+    environment:
+      DATABASE_URL: jdbc:postgresql://portal-db:5432/portal
+      DATABASE_USER: portal
+      DATABASE_PASSWORD: ${PORTAL_DB_PASSWORD}
+      TRIAGE_API_URL: http://triage-api:8000
+      TRIAGE_API_KEY: ${TRIAGE_API_KEY}
+      REPORT_ENGINE_URL: http://report-engine:8000
+      REPORT_ENGINE_API_KEY: ${REPORT_ENGINE_API_KEY}
+      N8N_WEBHOOK_URL: http://n8n:5678/webhook/daily-report
+      PORTAL_VIEWER_PASSWORD: ${PORTAL_VIEWER_PASSWORD:?set PORTAL_VIEWER_PASSWORD in .env}
+      PORTAL_OPERATOR_PASSWORD: ${PORTAL_OPERATOR_PASSWORD:?set PORTAL_OPERATOR_PASSWORD in .env}
+      PORTAL_MAX_RUN_AGE_DAYS: ${PORTAL_MAX_RUN_AGE_DAYS:-365}
+      TRIAGE_MANUAL_MINUTES: ${TRIAGE_MANUAL_MINUTES:-2}
+    depends_on:
+      portal-db:
+        condition: service_healthy
+
+  portal-web:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:8080:80"
+    depends_on:
+      - portal-api
+
+volumes:
+  triage-data:
+  portal-data:

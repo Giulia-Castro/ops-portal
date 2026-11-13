@@ -1,0 +1,78 @@
+{
+  "app": {
+    "title": "Ops Portal",
+    "subtitle": "Triagem de chamados e relatórios diários em um só lugar",
+    "dashboard": "Painel",
+    "reports": "Relatórios",
+    "logout": "Sair",
+    "language": "Idioma",
+    "demoBanner": "Demonstração com dados reais exportados dos projetos. Ações desativadas.",
+    "updatedAt": "Atualizado em {date}"
+  },
+  "login": {
+    "title": "Entrar",
+    "username": "Usuário",
+    "password": "Senha",
+    "submit": "Entrar",
+    "hint": "Contas: viewer (leitura) e operator (pode rodar relatórios)."
+  },
+  "impact": {
+    "title": "Impacto da automação",
+    "totalHours": "Horas economizadas (estimativa)",
+    "reportHours": "Relatórios",
+    "triageHours": "Triagem",
+    "llmCost": "Custo de IA acumulado",
+    "partial": "Parcial: um dos sistemas não respondeu.",
+    "estimateNote": "Estimativa: volume automatizado × tempo manual configurado em cada sistema."
+  },
+  "triage": {
+    "title": "Triagem de chamados",
+    "total": "Chamados triados",
+    "reviewRate": "Enviados para revisão",
+    "accuracy": "Acerto de categoria",
+    "accuracyHint": "{count} correções humanas",
+    "p95": "Latência p95",
+    "byCategory": "Por categoria",
+    "noFeedback": "sem feedback"
+  },
+  "reports": {
+    "title": "Relatórios diários",
+    "delivered": "Entregues",
+    "successRate": "Taxa de sucesso",
+    "avgPipeline": "Tempo médio do pipeline",
+    "aiSummaries": "Resumos por IA",
+    "timeline": "Saúde dos últimos dias",
+    "date": "Dia",
+    "health": "Status",
+    "requests": "Requisições",
+    "errorRate": "Taxa de erro",
+    "p95": "p95",
+    "alerts": "Alertas",
+    "source": "Resumo"
+  },
+  "runs": {
+    "title": "Rodar relatório sob demanda",
+    "description": "Dispara o workflow do n8n para um dia. O e-mail sai para a lista configurada e a execução fica registrada aqui.",
+    "date": "Dia",
+    "submit": "Rodar relatório",
+    "running": "Rodando… (até 3 minutos)",
+    "operatorOnly": "Apenas usuários com perfil OPERATOR podem rodar relatórios.",
+    "demoDisabled": "Desativado na demonstração.",
+    "history": "Execuções recentes",
+    "empty": "Nenhuma execução ainda.",
+    "requestedBy": "Por",
+    "requestedAt": "Quando",
+    "outcome": "Resultado",
+    "duration": "Duração",
+    "success": "Relatório de {date} entregue."
+  },
+  "health": { "GREEN": "Saudável", "YELLOW": "Atenção", "RED": "Crítico" },
+  "outcome": { "DELIVERED": "Entregue", "FAILED": "Falhou (plantão alertado)", "UNAVAILABLE": "n8n indisponível" },
+  "source": { "AI": "IA", "FALLBACK": "Regras" },
+  "common": {
+    "unavailable": "Sistema indisponível no momento.",
+    "loading": "Carregando…",
+    "retry": "Tentar de novo",
+    "error": "Algo deu errado."
+  }
+}

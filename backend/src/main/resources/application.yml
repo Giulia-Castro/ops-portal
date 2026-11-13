@@ -1,0 +1,73 @@
+spring:
+  application:
+    name: ops-portal
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/portal}
+    username: ${DATABASE_USER:portal}
+    password: ${DATABASE_PASSWORD:}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  messages:
+    basename: messages
+    encoding: UTF-8
+    fallback-to-system-locale: false
+  web:
+    locale-resolver: accept-header
+    locale: en
+
+server:
+  forward-headers-strategy: framework
+  servlet:
+    session:
+      timeout: 8h
+      cookie:
+        http-only: true
+        same-site: lax
+        secure: ${SESSION_COOKIE_SECURE:false}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+logging:
+  structured:
+    format:
+      console: ecs
+
+portal:
+  timezone: ${PORTAL_TIMEZONE:America/Sao_Paulo}
+  # Hypothesis: minutes a person spends triaging one ticket by hand. Measure yours.
+  triage-manual-minutes: ${TRIAGE_MANUAL_MINUTES:2}
+  recent-days: 30
+  max-run-age-days: ${PORTAL_MAX_RUN_AGE_DAYS:60}
+  triage:
+    url: ${TRIAGE_API_URL:http://localhost:8001}
+    api-key: ${TRIAGE_API_KEY:}
+    connect-timeout: 3s
+    read-timeout: 10s
+  reports:
+    url: ${REPORT_ENGINE_URL:http://localhost:8000}
+    api-key: ${REPORT_ENGINE_API_KEY:}
+    connect-timeout: 3s
+    read-timeout: 10s
+  n8n:
+    url: ${N8N_WEBHOOK_URL:http://localhost:5678/webhook/daily-report}
+    api-key: ${REPORT_ENGINE_API_KEY:}
+    connect-timeout: 3s
+    # The webhook answers when the workflow ends (Claude call, e-mail, retries).
+    read-timeout: 180s
+  users:
+    viewer-password: ${PORTAL_VIEWER_PASSWORD:}
+    operator-password: ${PORTAL_OPERATOR_PASSWORD:}
+  resilience:
+    max-attempts: 2
+    failure-threshold: 5
+    open-duration: 30s

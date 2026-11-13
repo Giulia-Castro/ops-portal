@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:portal;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+
+logging:
+  structured:
+    format:
+      console: ""
+  level:
+    root: WARN
+
+portal:
+  users:
+    viewer-password: viewer-test-password
+    operator-password: operator-test-password
+  resilience:
+    max-attempts: 2
+    failure-threshold: 3
+    open-duration: 30s

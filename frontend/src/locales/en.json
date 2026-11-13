@@ -1,0 +1,78 @@
+{
+  "app": {
+    "title": "Ops Portal",
+    "subtitle": "Ticket triage and daily reports in one place",
+    "dashboard": "Dashboard",
+    "reports": "Reports",
+    "logout": "Log out",
+    "language": "Language",
+    "demoBanner": "Demo with real data exported from the projects. Actions are disabled.",
+    "updatedAt": "Updated {date}"
+  },
+  "login": {
+    "title": "Log in",
+    "username": "User",
+    "password": "Password",
+    "submit": "Log in",
+    "hint": "Accounts: viewer (read only) and operator (can run reports)."
+  },
+  "impact": {
+    "title": "Automation impact",
+    "totalHours": "Hours saved (estimate)",
+    "reportHours": "Reports",
+    "triageHours": "Triage",
+    "llmCost": "Total AI cost",
+    "partial": "Partial: one of the systems did not answer.",
+    "estimateNote": "Estimate: automated volume × manual time configured in each system."
+  },
+  "triage": {
+    "title": "Ticket triage",
+    "total": "Tickets triaged",
+    "reviewRate": "Sent to human review",
+    "accuracy": "Category accuracy",
+    "accuracyHint": "{count} human corrections",
+    "p95": "p95 latency",
+    "byCategory": "By category",
+    "noFeedback": "no feedback"
+  },
+  "reports": {
+    "title": "Daily reports",
+    "delivered": "Delivered",
+    "successRate": "Success rate",
+    "avgPipeline": "Average pipeline time",
+    "aiSummaries": "AI summaries",
+    "timeline": "Health over the last days",
+    "date": "Day",
+    "health": "Status",
+    "requests": "Requests",
+    "errorRate": "Error rate",
+    "p95": "p95",
+    "alerts": "Alerts",
+    "source": "Summary"
+  },
+  "runs": {
+    "title": "Run a report on demand",
+    "description": "Triggers the n8n workflow for one day. The e-mail goes to the configured list and the run is recorded here.",
+    "date": "Day",
+    "submit": "Run report",
+    "running": "Running… (up to 3 minutes)",
+    "operatorOnly": "Only users with the OPERATOR role can run reports.",
+    "demoDisabled": "Disabled in the demo.",
+    "history": "Recent runs",
+    "empty": "No runs yet.",
+    "requestedBy": "By",
+    "requestedAt": "When",
+    "outcome": "Outcome",
+    "duration": "Duration",
+    "success": "Report for {date} delivered."
+  },
+  "health": { "GREEN": "Healthy", "YELLOW": "Attention", "RED": "Critical" },
+  "outcome": { "DELIVERED": "Delivered", "FAILED": "Failed (on-call alerted)", "UNAVAILABLE": "n8n unavailable" },
+  "source": { "AI": "AI", "FALLBACK": "Rules" },
+  "common": {
+    "unavailable": "System unavailable right now.",
+    "loading": "Loading…",
+    "retry": "Try again",
+    "error": "Something went wrong."
+  }
+}

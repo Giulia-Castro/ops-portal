@@ -1,0 +1,129 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend (Java 25, tests, coverage)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: maven
+      - name: Build, test and check coverage (domain + application >= 80%)
+        run: mvn -B verify
+
+  frontend:
+    name: Frontend (typecheck, tests, build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+  e2e:
+    name: End-to-end (3 projects + n8n, Docker Compose)
+    needs: [backend, frontend]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: ops-portal
+      - uses: actions/checkout@v4
+        with:
+          repository: Giulia-Castro/ticket-triage-agent
+          path: ticket-triage-agent
+      - uses: actions/checkout@v4
+        with:
+          repository: Giulia-Castro/ops-report-automation
+          path: ops-report-automation
+
+      - name: Throwaway secrets
+        working-directory: ops-portal
+        run: bash scripts/generate-env.sh
+
+      - name: Start the stack
+        working-directory: ops-portal
+        run: docker compose up -d --build
+
+      - name: Seed, run a report from the portal, check the dashboard, export demo data
+        working-directory: ops-portal
+        run: bash scripts/e2e.sh
+
+      - name: Logs on failure
+        if: failure()
+        working-directory: ops-portal
+        run: docker compose logs --tail=150
+
+      - name: Keep the exported data for the demo
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-data
+          path: ops-portal/frontend/public/demo/
+
+      - name: Tear down
+        if: always()
+        working-directory: ops-portal
+        run: docker compose down -v
+
+  pages:
+    name: Deploy demo to GitHub Pages
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: e2e
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: demo-data
+          path: frontend/public/demo/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - name: Build the static demo (data from the e2e run, actions disabled)
+        run: npm run build:demo
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+      - id: deploy
+        uses: actions/deploy-pages@v4
