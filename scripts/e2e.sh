@@ -5,6 +5,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 PY="$(command -v python3 || command -v python)"
+trap 'echo "--- logs (e2e failed) ---"; docker compose logs --tail=80 portal-api n8n report-engine' ERR
 
 wait_for() {
   local name="$1" url="$2" expected="$3" code=""

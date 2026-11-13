@@ -81,7 +81,10 @@ public class AppConfig {
     }
 
     private static RestClient restClient(RestClient.Builder builder, PortalProperties.Upstream upstream) {
+        // HTTP/1.1 on purpose: the JDK client's default h2c upgrade ("Upgrade: h2c") makes
+        // Node servers such as n8n drop the connection.
         HttpClient http = HttpClient.newBuilder()
+                .version(HttpClient.Version.HTTP_1_1)
                 .connectTimeout(orDefault(upstream.connectTimeout(), Duration.ofSeconds(3)))
                 .build();
         var factory = new JdkClientHttpRequestFactory(http);

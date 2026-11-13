@@ -62,6 +62,11 @@ final class StubUpstreams {
             if (correlation != null) {
                 correlationIds.add(correlation);
             }
+            if (ex.getRequestHeaders().containsKey("Upgrade")) {
+                // n8n (Node) drops connections that ask for an h2c upgrade.
+                ex.close();
+                return;
+            }
             if (!authorized(ex, REPORT_KEY)) {
                 return;
             }
